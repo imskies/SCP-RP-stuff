@@ -1,0 +1,791 @@
+"srcds_addons"
+{
+	"104482086"
+	{
+		"name"		"[Official] Precision Tool"
+		"path"		"/home/container/steam_cache/content/4000/104482086/447357553619383301_legacy.bin"
+	}
+	"104603291"
+	{
+		"name"		"Extended Spawnmenu"
+		"path"		"/home/container/steam_cache/content/4000/104603291"
+	}
+	"104691717"
+	{
+		"name"		"PAC3"
+		"path"		"/home/container/steam_cache/content/4000/104691717"
+	}
+	"105153463"
+	{
+		"name"		"Knight Playermodel"
+		"path"		"/home/container/steam_cache/content/4000/105153463/1135165696864361824_legacy.bin"
+	}
+	"109643223"
+	{
+		"name"		"3D2D Textscreens"
+		"path"		"/home/container/steam_cache/content/4000/109643223"
+	}
+	"131759821"
+	{
+		"name"		"VJ Base"
+		"path"		"/home/container/steam_cache/content/4000/131759821"
+	}
+	"144982052"
+	{
+		"name"		"M9K Specialties"
+		"path"		"/home/container/steam_cache/content/4000/144982052/1657847247025405068_legacy.bin"
+	}
+	"147802259"
+	{
+		"name"		"SW Robot GEN1"
+		"path"		"/home/container/steam_cache/content/4000/147802259"
+	}
+	"149766584"
+	{
+		"name"		"(Classic) Steventechno's Housepack V2.1"
+		"path"		"/home/container/steam_cache/content/4000/149766584/631908039690310409_legacy.bin"
+	}
+	"160250458"
+	{
+		"name"		"Wiremod"
+		"path"		"/home/container/steam_cache/content/4000/160250458"
+	}
+	"165104626"
+	{
+		"name"		"SCP 173 from SCP - Containment Breach"
+		"path"		"/home/container/steam_cache/content/4000/165104626/577870551144343818_legacy.bin"
+	}
+	"176238701"
+	{
+		"name"		"CoD MW2 Playermodels"
+		"path"		"/home/container/steam_cache/content/4000/176238701/31851510414862421_legacy.bin"
+	}
+	"183901628"
+	{
+		"name"		"SCP 049 PM and NPC model"
+		"path"		"/home/container/steam_cache/content/4000/183901628/41976433115767426_legacy.bin"
+	}
+	"186263258"
+	{
+		"name"		"Pain Sounds"
+		"path"		"/home/container/steam_cache/content/4000/186263258/833639354016171066_legacy.bin"
+	}
+	"207948202"
+	{
+		"name"		"Simple ThirdPerson"
+		"path"		"/home/container/steam_cache/content/4000/207948202"
+	}
+	"213515639"
+	{
+		"name"		"Emplacements"
+		"path"		"/home/container/steam_cache/content/4000/213515639/322374420297163875_legacy.bin"
+	}
+	"220336312"
+	{
+		"name"		"PermaProps"
+		"path"		"/home/container/steam_cache/content/4000/220336312"
+	}
+	"220687225"
+	{
+		"name"		"Resident Evil - Vector Playermodel"
+		"path"		"/home/container/steam_cache/content/4000/220687225/55483344093379686_legacy.bin"
+	}
+	"232636218"
+	{
+		"name"		"PMC playermodels"
+		"path"		"/home/container/steam_cache/content/4000/232636218/3278923365323117139_legacy.bin"
+	}
+	"264467687"
+	{
+		"name"		"Improved Stacker"
+		"path"		"/home/container/steam_cache/content/4000/264467687"
+	}
+	"327281224"
+	{
+		"name"		"Roleplay Props"
+		"path"		"/home/container/steam_cache/content/4000/327281224/394455950202398849_legacy.bin"
+	}
+	"407236638"
+	{
+		"name"		"Fading Door Tool - Fixed"
+		"path"		"/home/container/steam_cache/content/4000/407236638/540769214239771085_legacy.bin"
+	}
+	"412672563"
+	{
+		"name"		"Suits and Robbers Player Models [REUPLOADED]"
+		"path"		"/home/container/steam_cache/content/4000/412672563/536266067073124040_legacy.bin"
+	}
+	"422672588"
+	{
+		"name"		"Fortification Props Model Pack"
+		"path"		"/home/container/steam_cache/content/4000/422672588/544149264727277527_legacy.bin"
+	}
+	"452211954"
+	{
+		"name"		"[CW 2.0] MKEK JNG-90"
+		"path"		"/home/container/steam_cache/content/4000/452211954/445080383382540162_legacy.bin"
+	}
+	"460772855"
+	{
+		"name"		"GoW3: Zeus P.M. and Ragdoll"
+		"path"		"/home/container/steam_cache/content/4000/460772855/512629963250861088_legacy.bin"
+	}
+	"504013184"
+	{
+		"name"		"[CW2] Default Preset plugin (2016)"
+		"path"		"/home/container/steam_cache/content/4000/504013184/609478105726666056_legacy.bin"
+	}
+	"546392647"
+	{
+		"name"		"Media Player"
+		"path"		"/home/container/steam_cache/content/4000/546392647"
+	}
+	"676638642"
+	{
+		"name"		"Black Mesa Scientist-Citizens (Playermodels and NPCs)"
+		"path"		"/home/container/steam_cache/content/4000/676638642/82593731712550337_legacy.bin"
+	}
+	"683563224"
+	{
+		"name"		"SH Flashbang content"
+		"path"		"/home/container/steam_cache/content/4000/683563224/266088228497273946_legacy.bin"
+	}
+	"685095143"
+	{
+		"name"		"M2 Flamethrower SWEP"
+		"path"		"/home/container/steam_cache/content/4000/685095143/485640524946655254_legacy.bin"
+	}
+	"696136990"
+	{
+		"name"		"SH Cryo Grenade content"
+		"path"		"/home/container/steam_cache/content/4000/696136990/259334643652597840_legacy.bin"
+	}
+	"699797420"
+	{
+		"name"		"SH Mustard Gas Grenade content"
+		"path"		"/home/container/steam_cache/content/4000/699797420/259335280224839305_legacy.bin"
+	}
+	"707343339"
+	{
+		"name"		"CW 2.0 - Melee"
+		"path"		"/home/container/steam_cache/content/4000/707343339"
+	}
+	"727161410"
+	{
+		"name"		"Witcher Gates"
+		"path"		"/home/container/steam_cache/content/4000/727161410/492400997877097809_legacy.bin"
+	}
+	"730187817"
+	{
+		"name"		"More materials"
+		"path"		"/home/container/steam_cache/content/4000/730187817/264968922217917264_legacy.bin"
+	}
+	"740748927"
+	{
+		"name"		"SCP Staff"
+		"path"		"/home/container/steam_cache/content/4000/740748927/860604658688854475_legacy.bin"
+	}
+	"770291148"
+	{
+		"name"		"SCP-513 ENTITY"
+		"path"		"/home/container/steam_cache/content/4000/770291148/257093411709605405_legacy.bin"
+	}
+	"770964351"
+	{
+		"name"		"Graphite Hud Materials"
+		"path"		"/home/container/steam_cache/content/4000/770964351/266100825022782133_legacy.bin"
+	}
+	"773402917"
+	{
+		"name"		"Advanced Duplicator 2"
+		"path"		"/home/container/steam_cache/content/4000/773402917"
+	}
+	"776355104"
+	{
+		"name"		"SH Misc Grenades content"
+		"path"		"/home/container/steam_cache/content/4000/776355104/83720365548773115_legacy.bin"
+	}
+	"854872051"
+	{
+		"name"		"Stungun Content"
+		"path"		"/home/container/steam_cache/content/4000/854872051"
+	}
+	"871969365"
+	{
+		"name"		"[Empire]SCP Staff Janitor"
+		"path"		"/home/container/steam_cache/content/4000/871969365/85970162646530571_legacy.bin"
+	}
+	"924100738"
+	{
+		"name"		"SCP Insanity"
+		"path"		"/home/container/steam_cache/content/4000/924100738/964231421201844077_legacy.bin"
+	}
+	"925670022"
+	{
+		"name"		"SCP:CB Prop pack"
+		"path"		"/home/container/steam_cache/content/4000/925670022/851597681638362580_legacy.bin"
+	}
+	"940572608"
+	{
+		"name"		"SCP 966 - Playermodel"
+		"path"		"/home/container/steam_cache/content/4000/940572608/787415026685195900_legacy.bin"
+	}
+	"949648490"
+	{
+		"name"		"SCP-076-2 Player Model & Ragdoll"
+		"path"		"/home/container/steam_cache/content/4000/949648490/851592505505594634_legacy.bin"
+	}
+	"958509894"
+	{
+		"name"		"SCP-096 Animated Player Model (Update: 18/03/2018)"
+		"path"		"/home/container/steam_cache/content/4000/958509894/920297026160035434_legacy.bin"
+	}
+	"963664238"
+	{
+		"name"		"SCP-1048 Pack & Animated Player Model"
+		"path"		"/home/container/steam_cache/content/4000/963664238/857223523251709348_legacy.bin"
+	}
+	"964160040"
+	{
+		"name"		"SCP Assets"
+		"path"		"/home/container/steam_cache/content/4000/964160040/911288247978868260_legacy.bin"
+	}
+	"1124162421"
+	{
+		"name"		"SCP-527 Playermodel"
+	}
+	"1162417168"
+	{
+		"name"		"Weapon Holsters with editor"
+		"path"		"/home/container/steam_cache/content/4000/1162417168/857232612842116979_legacy.bin"
+	}
+	"1267850660"
+	{
+		"name"		"SCP: Containment Breach - Unity: SCP-106 PM & NPC"
+		"path"		"/home/container/steam_cache/content/4000/1267850660/924794946532581391_legacy.bin"
+	}
+	"1272811493"
+	{
+		"name"		"SCP: Containment Breach - Unity: SCP-939 PM"
+		"path"		"/home/container/steam_cache/content/4000/1272811493/924795399431496488_legacy.bin"
+	}
+	"1274995014"
+	{
+		"name"		"EGM Animation SWEPs"
+		"path"		"/home/container/steam_cache/content/4000/1274995014"
+	}
+	"1276030302"
+	{
+		"name"		"SCP-999 PM"
+		"path"		"/home/container/steam_cache/content/4000/1276030302/924795650018011038_legacy.bin"
+	}
+	"1332778012"
+	{
+		"name"		"Zeros PizzaMaker - Contentpack"
+		"path"		"/home/container/steam_cache/content/4000/1332778012"
+	}
+	"1345755676"
+	{
+		"name"		"Hidden Camera Models"
+		"path"		"/home/container/steam_cache/content/4000/1345755676/919172327772369518_legacy.bin"
+	}
+	"1442680335"
+	{
+		"name"		"Huge SCP model pack P1 [Nextoren]"
+		"path"		"/home/container/steam_cache/content/4000/1442680335/767233845677973457_legacy.bin"
+	}
+	"1442681959"
+	{
+		"name"		"Huge SCP model pack P2 [Nextoren]"
+		"path"		"/home/container/steam_cache/content/4000/1442681959/922560083886190382_legacy.bin"
+	}
+	"1445516972"
+	{
+		"name"		"Personnel PM - SCP  Advanced (Part 1)"
+		"path"		"/home/container/steam_cache/content/4000/1445516972/938337452371998738_legacy.bin"
+	}
+	"1445523976"
+	{
+		"name"		"Personnel PM - SCP  Advanced (Part 2)"
+		"path"		"/home/container/steam_cache/content/4000/1445523976/938337452366001743_legacy.bin"
+	}
+	"1452363997"
+	{
+		"name"		"mCompass"
+		"path"		"/home/container/steam_cache/content/4000/1452363997"
+	}
+	"1572489267"
+	{
+		"name"		"SCP 294 - Redux ( Editor Version )"
+		"path"		"/home/container/steam_cache/content/4000/1572489267"
+	}
+	"1578654739"
+	{
+		"name"		"[HITBOX FIX STANDALONE]Viper Operator playermodels [PM]"
+		"path"		"/home/container/steam_cache/content/4000/1578654739/960852728838135364_legacy.bin"
+	}
+	"1589205037"
+	{
+		"name"		"[CW 2.0] ACR"
+		"path"		"/home/container/steam_cache/content/4000/1589205037/799863269027691250_legacy.bin"
+	}
+	"1593259173"
+	{
+		"name"		"[CW 2.0] Mac Bo2 Some Rifles"
+		"path"		"/home/container/steam_cache/content/4000/1593259173/786352742385294888_legacy.bin"
+	}
+	"1596971443"
+	{
+		"name"		"GmodAdminSuite Content"
+		"path"		"/home/container/steam_cache/content/4000/1596971443/773985789199284375_legacy.bin"
+	}
+	"1673048305"
+	{
+		"name"		"Guthen SCP Content"
+		"path"		"/home/container/steam_cache/content/4000/1673048305"
+	}
+	"1744160931"
+	{
+		"name"		"DProps - Ultimate Prop Protection"
+		"path"		"/home/container/steam_cache/content/4000/1744160931/799864360094326381_legacy.bin"
+	}
+	"1783627645"
+	{
+		"name"		"[SCP] Voice Icon"
+		"path"		"/home/container/steam_cache/content/4000/1783627645"
+	}
+	"1784911999"
+	{
+		"name"		"LED screens"
+		"path"		"/home/container/steam_cache/content/4000/1784911999/772848610662999345_legacy.bin"
+	}
+	"1853618226"
+	{
+		"name"		"AWarn3 Server Content"
+		"path"		"/home/container/steam_cache/content/4000/1853618226"
+	}
+	"1876135550"
+	{
+		"name"		"Brick's Crafting - Content"
+		"path"		"/home/container/steam_cache/content/4000/1876135550/773983150583991189_legacy.bin"
+	}
+	"1900562881"
+	{
+		"name"		"Xenin - The Xenin Framework"
+		"path"		"/home/container/steam_cache/content/4000/1900562881"
+	}
+	"1956177393"
+	{
+		"name"		"Xenin F4 - Content Package"
+		"path"		"/home/container/steam_cache/content/4000/1956177393/773989400918817835_legacy.bin"
+	}
+	"2110611089"
+	{
+		"name"		"SCP-009 Red Ice Entity"
+		"path"		"/home/container/steam_cache/content/4000/2110611089"
+	}
+	"2186790311"
+	{
+		"name"		"SCP-912 Playermodel"
+		"path"		"/home/container/steam_cache/content/4000/2186790311"
+	}
+	"2232550792"
+	{
+		"name"		"SCP-682 - Advanced SWEP"
+		"path"		"/home/container/steam_cache/content/4000/2232550792"
+	}
+	"2233731395"
+	{
+		"name"		"Scene Builder"
+		"path"		"/home/container/steam_cache/content/4000/2233731395"
+	}
+	"2237864290"
+	{
+		"name"		"Easy Skins Contents"
+		"path"		"/home/container/steam_cache/content/4000/2237864290"
+	}
+	"2263392701"
+	{
+		"name"		"Micro HID Effect Content"
+		"path"		"/home/container/steam_cache/content/4000/2263392701"
+	}
+	"2263393115"
+	{
+		"name"		"Micro HID"
+		"path"		"/home/container/steam_cache/content/4000/2263393115"
+	}
+	"2299543771"
+	{
+		"name"		"Billy's Keypads Content"
+		"path"		"/home/container/steam_cache/content/4000/2299543771"
+	}
+	"2304089398"
+	{
+		"name"		"KB GMS - Realistic Radio"
+		"path"		"/home/container/steam_cache/content/4000/2304089398"
+	}
+	"2328355906"
+	{
+		"name"		"Billy's Keypad Cracker Content"
+		"path"		"/home/container/steam_cache/content/4000/2328355906"
+	}
+	"2333091730"
+	{
+		"name"		"Common Computer - Content"
+		"path"		"/home/container/steam_cache/content/4000/2333091730"
+	}
+	"2341022796"
+	{
+		"name"		"RE2R Hunk - Reduced Filesize [PM Only]"
+		"path"		"/home/container/steam_cache/content/4000/2341022796"
+	}
+	"2381216794"
+	{
+		"name"		"SCP-458 [Entity]"
+		"path"		"/home/container/steam_cache/content/4000/2381216794"
+	}
+	"2450331421"
+	{
+		"name"		"plaga's materials pack (100 materials)"
+		"path"		"/home/container/steam_cache/content/4000/2450331421"
+	}
+	"2482351689"
+	{
+		"name"		"Police Baton / Nightstick"
+		"path"		"/home/container/steam_cache/content/4000/2482351689"
+	}
+	"2515776625"
+	{
+		"name"		"STAR WARS Comlink System | Content"
+		"path"		"/home/container/steam_cache/content/4000/2515776625"
+	}
+	"2519414680"
+	{
+		"name"		"STAR WARS Battlefront II Scoreboard | Content"
+		"path"		"/home/container/steam_cache/content/4000/2519414680"
+	}
+	"2689168958"
+	{
+		"name"		"MRS Content (Icons)"
+		"path"		"/home/container/steam_cache/content/4000/2689168958"
+	}
+	"2797232006"
+	{
+		"name"		"SCP 662 Entity | The Silver Handbell"
+		"path"		"/home/container/steam_cache/content/4000/2797232006"
+	}
+	"2848512013"
+	{
+		"name"		"Deep Gaming Trophies Pack"
+		"path"		"/home/container/steam_cache/content/4000/2848512013"
+	}
+	"2849857569"
+	{
+		"name"		"SCP 1123 | The Real Entity"
+		"path"		"/home/container/steam_cache/content/4000/2849857569"
+	}
+	"2866011267"
+	{
+		"name"		"MTF Kappa-7 \"Maple Mountaineers\""
+		"path"		"/home/container/steam_cache/content/4000/2866011267"
+	}
+	"2997095733"
+	{
+		"name"		"Deep Gaming CW 2.0 Weapon Content"
+		"path"		"/home/container/steam_cache/content/4000/2997095733"
+	}
+	"3026753850"
+	{
+		"name"		"SCP Site 09 v3"
+		"path"		"/home/container/steam_cache/content/4000/3026753850"
+	}
+	"3056771367"
+	{
+		"name"		"Text Comms/Radio System [DarkRP]"
+		"path"		"/home/container/steam_cache/content/4000/3056771367"
+	}
+	"3054300441"
+	{
+		"name"		"Chen's Ammo Crate"
+		"path"		"/home/container/steam_cache/content/4000/3054300441"
+	}
+	"3129932140"
+	{
+		"name"		"Deep Gaming SCP-RP Sweps"
+		"path"		"/home/container/steam_cache/content/4000/3129932140"
+	}
+	"3344994563"
+	{
+		"name"		"MJScoreboard X - Content (gmodstore)"
+		"path"		"/home/container/steam_cache/content/4000/3344994563"
+	}
+	"1998633255"
+	{
+		"name"		"SCB Materials"
+		"path"		"/home/container/steam_cache/content/4000/1998633255"
+	}
+	"2228228831"
+	{
+		"name"		"pCasino - Content"
+		"path"		"/home/container/steam_cache/content/4000/2228228831"
+	}
+	"1819166858"
+	{
+		"name"		"Ballistic Shields [Workshop Content]"
+		"path"		"/home/container/steam_cache/content/4000/1819166858/773975426906410878_legacy.bin"
+	}
+	"2532060111"
+	{
+		"name"		"Zeros Lua Libary"
+		"path"		"/home/container/steam_cache/content/4000/2532060111"
+	}
+	"2486994157"
+	{
+		"name"		"MSD UI Content only"
+		"path"		"/home/container/steam_cache/content/4000/2486994157"
+	}
+	"3299645132"
+	{
+		"name"		"[GuthSCP] SCP-106"
+		"path"		"/home/container/steam_cache/content/4000/3299645132"
+	}
+	"1246554779"
+	{
+		"name"		"Roleplay Props Extended"
+		"path"		"/home/container/steam_cache/content/4000/1246554779/918038023544174847_legacy.bin"
+	}
+	"3001918715"
+	{
+		"name"		"LastLife's Amnestics"
+		"path"		"/home/container/steam_cache/content/4000/3001918715"
+	}
+	"3491393948"
+	{
+		"name"		"[GuthSCP] SCP-999"
+		"path"		"/home/container/steam_cache/content/4000/3491393948"
+	}
+	"3489863065"
+	{
+		"name"		"[GuthSCP] Augaton SCP-939"
+		"path"		"/home/container/steam_cache/content/4000/3489863065"
+	}
+	"931700563"
+	{
+		"name"		"SCP-066 Playermodel"
+		"path"		"/home/container/steam_cache/content/4000/931700563/772777351438153592_legacy.bin"
+	}
+	"3172610890"
+	{
+		"name"		"Multiverse | Terminal"
+		"path"		"/home/container/steam_cache/content/4000/3172610890"
+	}
+	"3172611631"
+	{
+		"name"		"Multiverse | Radial Menus"
+		"path"		"/home/container/steam_cache/content/4000/3172611631"
+	}
+	"3172619295"
+	{
+		"name"		"Multiverse | Perfect Hands Content"
+		"path"		"/home/container/steam_cache/content/4000/3172619295"
+	}
+	"1461735659"
+	{
+		"name"		"Alydus's Fortification Builder Tablet"
+		"path"		"/home/container/steam_cache/content/4000/1461735659"
+	}
+	"358608166"
+	{
+		"name"		"Extra Chuck's Weaponry 2.0"
+		"path"		"/home/container/steam_cache/content/4000/358608166"
+	}
+	"3704727821"
+	{
+		"name"		"Deep Gaming SCP-RP | Resources Pack 1"
+		"path"		"/home/container/steam_cache/content/4000/3704727821"
+	}
+	"3402226113"
+	{
+		"name"		"pCams - Content"
+		"path"		"/home/container/steam_cache/content/4000/3402226113"
+	}
+	"2922255746"
+	{
+		"name"		"[LVS] - Helicopters - Pack"
+		"path"		"/home/container/steam_cache/content/4000/2922255746"
+	}
+	"2912816023"
+	{
+		"name"		"[LVS] - Framework"
+		"path"		"/home/container/steam_cache/content/4000/2912816023"
+	}
+	"1646188213"
+	{
+		"name"		"Unlimited CW 2.0 Ammo Crate"
+		"path"		"/home/container/steam_cache/content/4000/1646188213/941718494144878103_legacy.bin"
+	}
+	"2866238940"
+	{
+		"name"		"SW Base"
+		"path"		"/home/container/steam_cache/content/4000/2866238940"
+	}
+	"2822390065"
+	{
+		"name"		"SCP-999 Swep"
+		"path"		"/home/container/steam_cache/content/4000/2822390065"
+	}
+	"3034740066"
+	{
+		"name"		"[GuthSCP] SCP-173"
+		"path"		"/home/container/steam_cache/content/4000/3034740066"
+	}
+	"3034740776"
+	{
+		"name"		"[GuthSCP] Keycard"
+		"path"		"/home/container/steam_cache/content/4000/3034740776"
+	}
+	"1596554153"
+	{
+		"name"		"Breaching Charge"
+		"path"		"/home/container/steam_cache/content/4000/1596554153/797614364644134011_legacy.bin"
+	}
+	"104607228"
+	{
+		"name"		"Fire Extinguisher"
+		"path"		"/home/container/steam_cache/content/4000/104607228/1758064520578602026_legacy.bin"
+	}
+	"1365376837"
+	{
+		"name"		"SCP 035 Entity alt"
+		"path"		"/home/container/steam_cache/content/4000/1365376837/958590148149819247_legacy.bin"
+	}
+	"2876513914"
+	{
+		"name"		"Mining - Content"
+		"path"		"/home/container/steam_cache/content/4000/2876513914"
+	}
+	"1149344121"
+	{
+		"name"		"DarkRP Full Classic Advert"
+		"path"		"/home/container/steam_cache/content/4000/1149344121"
+	}
+	"2248752220"
+	{
+		"name"		"Rogue Scoreboard Resource"
+		"path"		"/home/container/steam_cache/content/4000/2248752220"
+	}
+	"1907060869"
+	{
+		"name"		"Srlion's Hook Library"
+		"path"		"/home/container/steam_cache/content/4000/1907060869"
+	}
+	"3741381995"
+	{
+		"name"		"DG V10 Model Content"
+		"path"		"/home/container/steam_cache/content/4000/3741381995"
+	}
+	"2870389496"
+	{
+		"name"		"Eryziac lib"
+		"path"		"/home/container/steam_cache/content/4000/2870389496"
+	}
+	"3402202751"
+	{
+		"name"		"Nexus Library"
+		"path"		"/home/container/steam_cache/content/4000/3402202751"
+	}
+	"3742002522"
+	{
+		"name"		"DG V10 NPC Content"
+		"path"		"/home/container/steam_cache/content/4000/3742002522"
+	}
+	"2034684543"
+	{
+		"name"		"Zero´s GenLab - Contentpack"
+		"path"		"/home/container/steam_cache/content/4000/2034684543"
+	}
+	"3743077148"
+	{
+		"name"		"DG V10 Vehicle Content"
+		"path"		"/home/container/steam_cache/content/4000/3743077148"
+	}
+	"3743085274"
+	{
+		"name"		"Deep Gaming Miscellaneous Content"
+		"path"		"/home/container/steam_cache/content/4000/3743085274"
+	}
+	"2872200007"
+	{
+		"name"		"Site-70"
+		"path"		"/home/container/steam_cache/content/4000/2872200007"
+	}
+	"104486597"
+	{
+		"name"		"NPC Tools"
+		"path"		"/home/container/steam_cache/content/4000/104486597"
+	}
+	"3235813176"
+	{
+		"name"		"Blue's Pharmaceuticals"
+		"path"		"/home/container/steam_cache/content/4000/3235813176"
+	}
+	"1688987855"
+	{
+		"name"		"Blue's Pharmaceuticals - CONTENT ONLY"
+		"path"		"/home/container/steam_cache/content/4000/1688987855/1001395272805491764_legacy.bin"
+	}
+	"3548632537"
+	{
+		"name"		"SCP-3199 - SCP:5K - Reduced Filesize"
+		"path"		"/home/container/steam_cache/content/4000/3548632537"
+	}
+	"3426307133"
+	{
+		"name"		"SCP-3199 SWEP"
+		"path"		"/home/container/steam_cache/content/4000/3426307133"
+	}
+	"2977785840"
+	{
+		"name"		"Clientside Hitreg"
+		"path"		"/home/container/steam_cache/content/4000/2977785840"
+	}
+	"2803837857"
+	{
+		"name"		"Mining - Content"
+		"path"		"/home/container/steam_cache/content/4000/2803837857"
+	}
+	"2696785946"
+	{
+		"name"		"[RDV] Library (v2)"
+		"path"		"/home/container/steam_cache/content/4000/2696785946"
+	}
+	"3376820658"
+	{
+		"name"		"SCP-1025 | The Real Entity"
+		"path"		"/home/container/steam_cache/content/4000/3376820658"
+	}
+	"3012509914"
+	{
+		"name"		"SCP-035 | The Real Entity"
+		"path"		"/home/container/steam_cache/content/4000/3012509914"
+	}
+	"2504695507"
+	{
+		"name"		"Normalized Arm Damage"
+		"path"		"/home/container/steam_cache/content/4000/2504695507"
+	}
+	"956066634"
+	{
+		"name"		"Permanent SWEPS"
+		"path"		"/home/container/steam_cache/content/4000/956066634/776236853346361734_legacy.bin"
+	}
+	"108176967"
+	{
+		"name"		"The Sit Anywhere Script!"
+		"path"		"/home/container/steam_cache/content/4000/108176967"
+	}
+	"1795813904"
+	{
+		"name"		"Zero´s Trashman - Contentpack"
+	}
+}

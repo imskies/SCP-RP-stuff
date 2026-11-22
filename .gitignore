@@ -1,0 +1,13 @@
+# Never publish nested repositories or local orchestration logs
+**/.git/
+.wisp/
+
+# Server secrets, player data, runtime state, caches, and backups
+garrysmod/cfg/server.cfg
+garrysmod/sv.db
+garrysmod/archive-*.tar.gz
+garrysmod/data/archive-*.tar.gz
+garrysmod/data/
+garrysmod/clientside_errors.txt
+garrysmod/settings/users.txt
+*.log

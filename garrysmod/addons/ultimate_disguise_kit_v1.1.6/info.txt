@@ -1,0 +1,10 @@
+"AddonInfo"
+{
+        "name"              "legitdoods Ultimate Disguise Kit"
+        "version"           "1.1"
+        "up_date"           "8/1/2015"
+        "author_name"       "legitdood"
+        "author_email"      "alphawolf4672@gmail.com"
+        "info"              "k"
+        "override"          "0"
+}

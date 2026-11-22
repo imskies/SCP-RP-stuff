@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "geralts/bur"
+	"$bumpmap" "geralts/bur_n"
+}

@@ -1,0 +1,91 @@
+/*
+    Addon id: f60c11f4-6a70-423c-a926-0bea1813031f
+    Version: v3.3.5 (stable)
+*/
+
+AddCSLuaFile()
+zbl = zbl or {}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       -- 76561199022046337
+
+
+zbl.materials = zbl.materials or {}
+zbl.materials["zbl_cursor"] = Material("zerochain/zblood/zbl_cursor.png", "smooth")
+//zbl.materials["blur"] = Material("pp/blurscreen")
+zbl.materials["zbl_dna_icon"] = Material("zerochain/zblood/zbl_icon_sample.png", "smooth")
+zbl.materials["zbl_abillity_icon"] = Material("zerochain/zblood/zbl_icon_abillity.png", "smooth")
+zbl.materials["zbl_cure_icon"] = Material("zerochain/zblood/zbl_icon_cure.png", "smooth")
+zbl.materials["zbl_virus_icon"] = Material("zerochain/zblood/zbl_icon_virus.png", "smooth")
+zbl.materials["zbl_hexagon_icon"] = Material("zerochain/zblood/zbl_icon_hexagon.png", "smooth")
+zbl.materials["zbl_hexagon_outline"] = Material("zerochain/zblood/zbl_icon_hexagon_outline.png", "smooth")
+zbl.materials["zbl_icon_vaccine"] = Material("zerochain/zblood/zbl_icon_vaccine.png", "smooth")
+zbl.materials["zbl_icon_virusdna"] = Material("zerochain/zblood/zbl_icon_virusdna.png", "smooth")
+zbl.materials["zbl_ex_square"] = Material("zerochain/zblood/zbl_ex_square.png", "smooth")
+zbl.materials["zbl_ex_square_wide"] = Material("zerochain/zblood/zbl_ex_square_wide.png", "smooth")
+zbl.materials["zbl_icon_locked"] = Material("zerochain/zblood/zbl_icon_locked.png", "smooth")
+zbl.materials["zbl_icon_analyze"] = Material("zerochain/zblood/zbl_icon_analyze.png", "smooth")
+zbl.materials["zbl_icon_close"] = Material("zerochain/zblood/zbl_icon_close.png", "smooth")
+zbl.materials["zbl_icon_create"] = Material("zerochain/zblood/zbl_icon_create.png", "smooth")
+zbl.materials["zbl_icon_time"] = Material("zerochain/zblood/zbl_icon_time.png", "smooth")
+zbl.materials["zbl_icon_remove"] = Material("zerochain/zblood/zbl_icon_remove.png", "smooth")
+zbl.materials["zbl_icon_clean"] = Material("zerochain/zblood/zbl_icon_clean.png", "smooth")
+zbl.materials["zbl_icon_scan"] = Material("zerochain/zblood/zbl_icon_scan.png", "smooth")
+zbl.materials["zbl_npc_bg"] = Material("zerochain/zblood/zbl_npc_bg.png", "smooth")
+zbl.materials["zbl_logo_w"] = Material("zerochain/zblood/mcphone/zbl_logo_w.png", "smooth")
+zbl.materials["zbl_mask_off"] = Material("zerochain/zblood/mcphone/zbl_mask_off.png", "smooth")
+zbl.materials["zbl_mask_on"] = Material("zerochain/zblood/mcphone/zbl_mask_on.png", "smooth")
+zbl.materials["zbl_fence_icon"] = Material("zerochain/zblood/zbl_fence_icon.png", "smooth")
+zbl.materials["zbl_gate_icon"] = Material("zerochain/zblood/zbl_gate_icon.png", "smooth")
+zbl.materials["zbl_gate_field"] = Material("models/props_combine/portalball001_sheet", "smooth")
+zbl.materials["zbl_scanmat"] = Material("zerochain/zblood/scan_mat", "smooth")
+zbl.materials["zbl_icon_stat_contamination"] = Material("zerochain/zblood/zbl_icon_stat_contamination.png", "smooth")
+zbl.materials["zbl_icon_stat_corpse"] = Material("zerochain/zblood/zbl_icon_stat_corpse.png", "smooth")
+zbl.materials["zbl_icon_stat_infected"] = Material("zerochain/zblood/zbl_icon_stat_infected.png", "smooth")
+zbl.materials["zbl_icon_stat_virusnode"] = Material("zerochain/zblood/zbl_icon_stat_virusnode.png", "smooth")
+zbl.materials["zbl_scanlines"] = Material("zerochain/zblood/zbl_scanlines.png", "smooth")
+zbl.materials["zbl_shield_icon"] = Material("zerochain/zblood/zbl_shield_icon.png", "smooth")
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       -- 810517969e54369390d098bf094764ab97c045b14d3b8511404abf93da021955
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       -- 9250d48d68f6eeb1d7b32c6981d6d96b7f992dc3c1277887cb56faa87c747a24
+
+zbl.colors = zbl.colors or {}
+zbl.colors["black02"] = Color(0, 0, 0, 175)
+zbl.colors["black03"] = Color(0, 0, 0, 100)
+zbl.colors["black04"] = Color(45, 45, 45, 255)
+zbl.colors["black05"] = Color(35, 35, 35, 255)
+zbl.colors["black06"] = Color(0, 0, 0, 200)
+zbl.colors["white02"] = Color(255, 255, 255, 50)
+zbl.colors["white03"] = Color(185, 185, 185, 10)
+zbl.colors["white04"] = Color(185, 185, 185, 255)
+zbl.colors["white05"] = Color(255, 255, 255, 5)
+zbl.colors["white06"] = Color(55, 55, 55, 255)
+zbl.colors["white07"] = Color(255, 255, 255, 150)
+zbl.colors["grey01"] = Color(65, 65, 65, 255)
+zbl.colors["grey05"] = Color(100, 100, 100, 255)
+zbl.colors["lab_blue_dark"] = Color(34, 42, 88, 255)
+zbl.colors["lab_blue_light"] = Color(41, 51, 104, 255)
+zbl.colors["sample_blue"] = Color(48, 136, 236, 255)
+zbl.colors["abillity_yellow"] = Color(250, 152, 77, 255)
+zbl.colors["cure_green"] = Color(49, 208, 167, 255)
+zbl.colors["virus_red"] = Color(190, 58, 80, 255)
+zbl.colors["virus_red_light"] = Color(224, 43, 73, 255)
+zbl.colors["clean_blue"] = Color(74, 155, 209, 255)
+zbl.colors["virus_red_alpha"] = Color(74, 155, 209, 50)
+zbl.colors["clean_blue_alpha"] = Color(74, 155, 209, 15)
+zbl.colors["grey_dark"] = Color(45, 45, 45, 255)
+zbl.colors["grey_light"] = Color(55, 55, 55, 255)
+zbl.colors["grey_lighter"] = Color(65, 65, 65, 255)
+zbl.colors["lab_blue"] = Color(32, 136, 255, 255)
+zbl.colors["aiz_green"] = Color(49, 208, 167, 125)
+zbl.colors["hotspot_red"] = Color(190, 58, 80, 125)
+zbl.colors["abillity_yellow_alpha"] = Color(250, 152, 77, 125)
+
+zbl.colors["cachedpos_violett"] = Color(190, 58, 170, 125)
+zbl.colors["disinfect_blue_light"] = Color(117, 230, 255, 255)
+zbl.colors["disinfect_blue_dark"] = Color(36, 183, 188, 255)
+zbl.colors["fence_indicator"] = Color(190, 58, 80, 50)
+zbl.colors["fence_check_good"] = Color(61, 190, 58, 255)
+zbl.colors["fence_check_bad"] = Color(190, 58, 80, 255)
+zbl.colors["fence_check_sterilized"] = Color(58, 142, 190, 255)
+zbl.colors["spray_sterilized"] = Color(92, 189, 234, 255)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       -- 9250d48d68f6eeb1d7b32c6981d6d96b7f992dc3c1277887cb56faa87c747a24
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       -- 76561199022046360

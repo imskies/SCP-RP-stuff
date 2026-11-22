@@ -1,0 +1,709 @@
+GProfiler.Net = GProfiler.Net or {}
+local Net = GProfiler.Net
+
+Net.Realm = Net.Realm or "Client"
+
+local NetStore = GProfiler.Profilers.GetStore("Networking")
+
+local function FormatBits(bits)
+	if not bits or bits < 0.01 then return "0 Bytes" end
+	if not isnumber(bits) then return "oh fiddlesticks, what now?" end
+
+	if bits < 8 then return math.Round(bits, 2) .. (bits == 1 and " Bit" or " Bits") end
+
+	local bytes = bits / 8
+	if bytes < 1024 then return math.Round(bytes, 2) .. (bytes == 1 and " Byte" or " Bytes") end
+
+	local kb = bytes / 1024
+	if kb < 1024 then return math.Round(kb, 2) .. " KB" end
+	local mb = kb / 1024
+	return math.Round(mb, 2) .. " MB"
+end
+
+function GProfiler.Net.DoTab(Base, Outer)
+	local Header = GProfiler.Utils.SetupHeader(Outer, "Networking", "gprofiler/network.png")
+	local initialActive = Net.Realm == "Both" and (NetStore:IsActive("Client") or NetStore:IsActive("Server")) or NetStore:IsActive(Net.Realm)
+	local StartStop = Header:SetupStartStop(initialActive)
+	local RealmSelector = Header:SetupRealmSelector(Net.Realm, true)
+	local Timer = Header:SetupTimer(function()
+		local realm = Net.Realm == "Both" and "Client" or Net.Realm
+		return NetStore:GetTimerData(realm)
+	end)
+
+	local RNDX = GProfiler.RNDX
+
+	Base:SetPos(GProfiler.GetScaledSize(10), Header:GetTall() + GProfiler.GetScaledSize(12))
+	Base:SetSize(Outer:GetWide() - GProfiler.GetScaledSize(20), Outer:GetTall() - Header:GetTall() - GProfiler.GetScaledSize(22))
+	Base.OnHandleMoved = function()
+		Header:SetWide(Outer:GetWide())
+		Base:SetSize(Outer:GetWide() - GProfiler.GetScaledSize(20), Outer:GetTall() - Header:GetTall() - GProfiler.GetScaledSize(22))
+		Header.OnHandleMoved()
+	end
+
+	function StartStop:OnStateChanged(Running)
+		GProfiler.Profilers.Toggle("Networking", Net.Realm, Running)
+
+		if Net.RefreshUI then
+			Net.RefreshUI()
+		end
+	end
+
+	function RealmSelector:OnStateChanged(state)
+		Net.Realm = state
+		if state == "Both" then
+			StartStop.State = NetStore:IsActive("Client") or NetStore:IsActive("Server")
+		else
+			StartStop.State = NetStore:IsActive(state)
+		end
+		StartStop:SetText(StartStop.State and "Stop" or "Start")
+		if Net.RefreshUI then
+			Net.RefreshUI()
+		end
+	end
+
+	local left, right = GProfiler.Utils.VSplitPanel(Base, GProfiler.GetScaledSize(10), "net_lr", 0.65)
+	local Results, Receivers = GProfiler.Utils.HSplitPanel(left, GProfiler.GetScaledSize(10), "net_l_bt", 0.65)
+	local ResultsSent, ResultsReceived = GProfiler.Utils.HSplitPanel(Results, GProfiler.GetScaledSize(10), "net_results_split", 0.5)
+	local Source, Breakdown = GProfiler.Utils.HSplitPanel(right, GProfiler.GetScaledSize(10), "net_r_bt", 0.75)
+	local ClientReceivers, ServerReceivers = GProfiler.Utils.VSplitPanel(Receivers, GProfiler.GetScaledSize(10), "net_lb_lr", 0.5)
+
+	local SourceHeader = vgui.Create("DLabel", Source)
+	SourceHeader:SetFont("GProfiler.Inter24")
+	SourceHeader:SetTextColor(GProfiler.SyntaxColors.comment)
+	SourceHeader:SetPos(GProfiler.GetScaledSize(10), GProfiler.GetScaledSize(5))
+	SourceHeader:SetSize(Source:GetWide() - GProfiler.GetScaledSize(20), GProfiler.GetScaledSize(24))
+	SourceHeader:SetText("Select a network message to view source.")
+
+	Source.Paint = function(s, w, h)
+		GProfiler.RNDX.DrawScaled(8, 0, 0, w, h, GProfiler.SyntaxColors.background, GProfiler.RNDX.NO_BR + GProfiler.RNDX.NO_BL)
+	end
+
+	local RichText = vgui.Create("RichText", Source)
+	RichText:SetText("")
+	RichText:SetSize(Source:GetWide() - GProfiler.GetScaledSize(20), Source:GetTall() - GProfiler.GetScaledSize(20) - GProfiler.GetScaledSize(30))
+	RichText:SetPos(GProfiler.GetScaledSize(10), GProfiler.GetScaledSize(30))
+	RichText:SetVerticalScrollbarEnabled(true)
+	function RichText:PerformLayout()
+		self:SetFontInternal("GProfiler.Code")
+	end
+
+	Source.OnHandleMoved = function()
+		SourceHeader:SetSize(Source:GetWide() - GProfiler.GetScaledSize(20), GProfiler.GetScaledSize(24))
+		RichText:SetSize(Source:GetWide() - GProfiler.GetScaledSize(20), Source:GetTall() - GProfiler.GetScaledSize(20) - GProfiler.GetScaledSize(30))
+		RichText:SetPos(GProfiler.GetScaledSize(10), GProfiler.GetScaledSize(30))
+		RichText:InvalidateLayout()
+	end
+
+	local BreakdownPanel = vgui.Create("DScrollPanel", Breakdown)
+	BreakdownPanel:Dock(FILL)
+
+	local function SetDefaultBreakdownState()
+		BreakdownPanel:Clear()
+		local pnl = vgui.Create("DPanel", BreakdownPanel)
+		pnl:Dock(FILL)
+		pnl:DockMargin(0, 0, 0, 0)
+		pnl.Paint = function(s, w, h)
+			GProfiler.RNDX.DrawScaled(0, 0, 0, w, h, GProfiler.SyntaxColors.background, GProfiler.RNDX.NO_BR + GProfiler.RNDX.NO_BL)
+			draw.SimpleText("Select a network message to view breakdown.", "GProfiler.Inter24", GProfiler.GetScaledSize(10), GProfiler.GetScaledSize(14), GProfiler.SyntaxColors.comment, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+		end
+
+		pnl:SetTall(BreakdownPanel:GetTall())
+		BreakdownPanel.OnSizeChanged = function(s, w, h)
+			if IsValid(pnl) then pnl:SetTall(h) end
+		end
+	end
+	SetDefaultBreakdownState()
+
+	local SentHeader = GProfiler.Utils.SetupHeader(ResultsSent, "Messages Sent", nil, true)
+	local ReceivedHeader = GProfiler.Utils.SetupHeader(ResultsReceived, "Messages Received", nil, true)
+
+	local ResultsList = GProfiler.Utils.CreateList(ResultsSent, SentHeader, {"Name", "Count", "Size (Largest)", "Size (Total)", "Time (Total)", "Time (Avg)", "Time (Longest)"})
+	local ReceivedList = GProfiler.Utils.CreateList(ResultsReceived, ReceivedHeader, {"Name", "Count", "Size (Largest)", "Size (Total)", "Time (Total)", "Time (Avg)", "Time (Longest)"})
+
+	Results.OnHandleMoved = function()
+		ResultsList:SetSize(Results:GetWide(), Results:GetTall() - SentHeader:GetTall())
+		ResultsList:SetPos(0, SentHeader:GetTall())
+		ReceivedList:SetSize(Results:GetWide(), Results:GetTall() - ReceivedHeader:GetTall())
+		ReceivedList:SetPos(0, ReceivedHeader:GetTall())
+		SentHeader:SetSize(Results:GetWide(), SentHeader:GetTall())
+		ReceivedHeader:SetSize(Results:GetWide(), ReceivedHeader:GetTall())
+	end
+
+	local function PopulateBreakdown(name, nodes, totalSize)
+		if not IsValid(BreakdownPanel) then return end
+
+		BreakdownPanel:Clear()
+
+		local Canvas = vgui.Create("DPanel", BreakdownPanel)
+		Canvas:Dock(TOP)
+		Canvas:SetTall(0)
+		Canvas.Paint = function(s, w, h)
+			GProfiler.RNDX.DrawScaled(0, 0, 0, w, h, GProfiler.SyntaxColors.background)
+		end
+
+		local function GetParts(funcName, arg, size)
+			local parts = {}
+			table.insert(parts, {"net", GProfiler.SyntaxColors.library})
+			table.insert(parts, {".", GProfiler.SyntaxColors.punctuation})
+			table.insert(parts, {funcName, GProfiler.SyntaxColors.funcCall})
+			table.insert(parts, {"(", GProfiler.SyntaxColors.punctuation})
+			if arg then
+				table.insert(parts, {arg, GProfiler.SyntaxColors.string})
+			end
+			table.insert(parts, {")", GProfiler.SyntaxColors.punctuation})
+			if size and size > 0 then
+				table.insert(parts, {" -- Size: " .. FormatBits(size), GProfiler.SyntaxColors.comment})
+			end
+			return parts
+		end
+
+		local Lines = {}
+
+		table.insert(Lines, {
+			Parts = GetParts("Start", '"' .. name .. '"', totalSize),
+			Depth = 0,
+			Expanded = true,
+			Children = nodes
+		})
+
+		local function AddChildren(children, depth)
+			for _, child in ipairs(children) do
+				local line = {
+					Parts = GetParts(child.Func, nil, child.Size),
+					Depth = depth,
+					Expanded = true,
+					Children = child.Children,
+					IsNode = true,
+					ParentNode = children
+				}
+				table.insert(Lines, line)
+				if child.Children and #child.Children > 0 then
+					AddChildren(child.Children, depth + 1)
+				end
+			end
+		end
+
+		local RootNodes = {}
+
+		local startNode = {
+			Parts = GetParts("Start", '"' .. name .. '"', totalSize),
+			Children = {},
+			Depth = 0,
+			Expanded = true
+		}
+		table.insert(RootNodes, startNode)
+
+		local hiddenFuncs = {
+			["Start"] = true,
+			["Send"] = true,
+			["Broadcast"] = true,
+			["SendOmit"] = true,
+			["SendPVS"] = true,
+			["SendPAS"] = true
+		}
+
+		local function BuildTree(parentList, dataChildren, depth)
+			for _, child in ipairs(dataChildren) do
+				if hiddenFuncs[child.Func] then continue end
+
+				local node = {
+					Parts = GetParts(child.Func, nil, child.Size),
+					Children = {},
+					Depth = depth,
+					Expanded = true
+				}
+				table.insert(parentList, node)
+				if child.Children and #child.Children > 0 then
+					BuildTree(node.Children, child.Children, depth + 1)
+				end
+			end
+		end
+
+		BuildTree(startNode.Children, nodes, 1)
+
+		local sendNode = {
+			Parts = GetParts("Send"),
+			Children = {},
+			Depth = 0,
+			Expanded = true
+		}
+		table.insert(RootNodes, sendNode)
+
+		local lineHeight = GProfiler.GetScaledSize(22)
+		local indentSize = GProfiler.GetScaledSize(20)
+		local iconSize = GProfiler.GetScaledSize(16)
+
+		Canvas.Paint = function(s, w, h)
+			GProfiler.RNDX.DrawScaled(8, 0, 0, w, h, GProfiler.SyntaxColors.background, GProfiler.RNDX.NO_BR + GProfiler.RNDX.NO_BL)
+
+			RNDX.DrawScaled(0, 0, 0, GProfiler.GetScaledSize(30), h, GProfiler.SyntaxColors.background)
+			surface.SetDrawColor(GProfiler.SyntaxColors.lineSep)
+			surface.DrawRect(GProfiler.GetScaledSize(30), 0, 1, h)
+
+			local y = 0
+			local mouseX, mouseY = s:LocalCursorPos()
+			local clicked = s.MousePressed
+			local targetNode = nil
+
+			if clicked then
+				local function checkClick(nodeList, currentY)
+					for _, node in ipairs(nodeList) do
+						local rowY= currentY
+						currentY = currentY + lineHeight
+
+						local x = GProfiler.GetScaledSize(40) + (node.Depth * indentSize)
+						local expanderX = x - indentSize
+
+						if #node.Children > 0 then
+							if mouseX >= expanderX and mouseX <= expanderX + iconSize and mouseY >= rowY and mouseY <= rowY + lineHeight then
+								node.Expanded = not node.Expanded
+								s:InvalidateLayout()
+								return currentY, true
+							end
+						end
+
+						if node.Expanded and #node.Children > 0 then
+							local newY, handled = checkClick(node.Children, currentY)
+							currentY = newY
+							if handled then return currentY, true end
+						end
+					end
+					return currentY, false
+				end
+				checkClick(RootNodes, 0)
+				s.MousePressed = false
+			end
+
+			local lineNum = 1
+			local function DrawNodes(nodeList, currentY)
+				for _, node in ipairs(nodeList) do
+					local rowY = currentY
+
+					draw.SimpleText(lineNum, "GProfiler.Code", GProfiler.GetScaledSize(25), rowY + lineHeight/2, GProfiler.SyntaxColors.lineNumber, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+					lineNum = lineNum + 1
+
+					local x = GProfiler.GetScaledSize(40) + (node.Depth * indentSize)
+
+					if #node.Children > 0 and node.Depth > 0 then
+						local expanderX = x - indentSize
+						local expanderY = rowY + (lineHeight - iconSize)/2
+
+						surface.SetDrawColor(GProfiler.SyntaxColors.lineNumber)
+						draw.NoTexture()
+
+						if node.Expanded then
+							surface.DrawPoly({
+								{ x = expanderX, y = expanderY + iconSize/4 },
+								{ x = expanderX + iconSize/2, y = expanderY + iconSize/4 },
+								{ x = expanderX + iconSize/4, y = expanderY + iconSize/2 + iconSize/4 }
+							})
+						else
+							surface.DrawPoly({
+								{ x = expanderX, y = expanderY + iconSize/4 },
+								{ x = expanderX + iconSize/2, y = expanderY + iconSize/2 },
+								{ x = expanderX, y = expanderY + iconSize/2 + iconSize/4 }
+							})
+						end
+					end
+
+					surface.SetFont("GProfiler.Code")
+					local textX = x
+					for _, part in ipairs(node.Parts) do
+						surface.SetTextColor(part[2])
+						surface.SetTextPos(textX, rowY + (lineHeight - surface.GetTextSize("A"))/2 - 4)
+						surface.DrawText(part[1])
+						textX = textX + surface.GetTextSize(part[1])
+					end
+
+					currentY = currentY + lineHeight
+
+					if node.Expanded and #node.Children > 0 then
+						currentY = DrawNodes(node.Children, currentY)
+					end
+				end
+				return currentY
+			end
+
+			DrawNodes(RootNodes, 0)
+		end
+
+		Canvas.PerformLayout = function(s)
+			local h = 0
+			local function CalcHeight(nodeList)
+				for _, node in ipairs(nodeList) do
+					h = h + lineHeight
+					if node.Expanded and #node.Children > 0 then
+						CalcHeight(node.Children)
+					end
+				end
+			end
+			CalcHeight(RootNodes)
+			s:SetTall(math.max(h + GProfiler.GetScaledSize(10), BreakdownPanel:GetTall()))
+		end
+
+		Canvas.OnMousePressed = function(s, code)
+			if code == MOUSE_LEFT then
+				s.MousePressed = true
+			end
+		end
+
+		Canvas:InvalidateLayout()
+	end
+
+	GProfiler.Net.UpdateBreakdownUI = function(name)
+		local data = GProfiler.Net.Breakdowns[name]
+		if data then
+			PopulateBreakdown(name, data.Nodes, data.Size)
+		end
+	end
+
+	function ResultsList:OnRowSelected(rowIndex, row)
+		ReceivedList:ClearSelection()
+		local name = row:GetColumnText(1)
+		local displayRealm = Net.Realm == "Both" and "Client" or Net.Realm
+		local realmData = NetStore:GetData(displayRealm) or {}
+		local data = realmData.Out and realmData.Out[name]
+
+		if data then
+			BreakdownPanel:Clear()
+
+			local Loading = vgui.Create("DPanel", BreakdownPanel)
+			Loading:Dock(FILL)
+			Loading:DockMargin(0, 0, 0, 0)
+			Loading.Paint = function(s, w, h)
+				GProfiler.RNDX.DrawScaled(0, 0, 0, w, h, GProfiler.SyntaxColors.background, GProfiler.RNDX.NO_BR + GProfiler.RNDX.NO_BL)
+				draw.SimpleText("Loading breakdown...", "GProfiler.Inter24", GProfiler.GetScaledSize(10), GProfiler.GetScaledSize(14), GProfiler.SyntaxColors.comment, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+			end
+			Loading:SetTall(BreakdownPanel:GetTall())
+			BreakdownPanel.OnSizeChanged = function(s, w, h)
+				if IsValid(Loading) then Loading:SetTall(h) end
+			end
+
+			RichText:SetText("Loading source...")
+			SourceHeader:SetText("")
+
+			local file = data.Source or data[4]
+			local lineDefined = data.LineDefined or data[5] or 0
+			local lastLineDefined = data.LastLineDefined or data[6] or 0
+
+			if file and file ~= "" then
+				file = string.match(file, "@?(.+)")
+				if not file then file = data.Source or data[4] end
+
+				SourceHeader:SetText(string.format("%s (%d - %d)", file, lineDefined, lastLineDefined))
+
+				GProfiler.RequestFunctionSource(file, lineDefined, lastLineDefined, function(src)
+					if src then
+						GProfiler.SyntaxHighlight(RichText, table.concat(src, ""), lineDefined)
+					else
+						RichText:SetText("Failed to load source")
+					end
+				end)
+			else
+				RichText:SetText("Failed to load source (2)")
+			end
+
+			if displayRealm == "Client" then
+				local breakdownData = GProfiler.Net.Breakdowns and GProfiler.Net.Breakdowns[name]
+				if breakdownData then
+					PopulateBreakdown(name, breakdownData.Children or {}, data.Size or data[7] or 0)
+				end
+			else
+				GProfiler.Net.UpdateBreakdownUI = function(msg)
+					if msg ~= name then return end
+					local d = GProfiler.Net.Breakdowns and GProfiler.Net.Breakdowns[name]
+					if d then PopulateBreakdown(name, d.Nodes, d.Size) end
+					GProfiler.Net.UpdateBreakdownUI = nil
+				end
+
+				net.Start("GProfiler_Net_RequestBreakdown")
+				net.WriteString(name)
+				net.SendToServer()
+			end
+		end
+	end
+
+	function ReceivedList:OnRowSelected(rowIndex, row)
+		ResultsList:ClearSelection()
+		local name = row:GetColumnText(1)
+		local displayRealm = Net.Realm == "Both" and "Client" or Net.Realm
+		local realmData = NetStore:GetData(displayRealm) or {}
+		local data = realmData.Inc and realmData.Inc[name]
+
+		if data then
+			BreakdownPanel:Clear()
+
+			local Header = vgui.Create("DPanel", BreakdownPanel)
+			Header:Dock(FILL)
+			Header:DockMargin(0, 0, 0, 0)
+			Header.Paint = function(s, w, h)
+				GProfiler.RNDX.DrawScaled(0, 0, 0, w, h, GProfiler.SyntaxColors.background, GProfiler.RNDX.NO_BR + GProfiler.RNDX.NO_BL)
+				draw.SimpleText("Breakdown only available for sent messages", "GProfiler.Inter24", GProfiler.GetScaledSize(10), GProfiler.GetScaledSize(14), GProfiler.SyntaxColors.comment, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+			end
+			Header:SetTall(BreakdownPanel:GetTall())
+			BreakdownPanel.OnSizeChanged = function(s, w, h)
+				if IsValid(Header) then Header:SetTall(h) end
+			end
+
+			RichText:SetText("Loading source...")
+			SourceHeader:SetText("")
+
+			local file = data.Source or data[4]
+			local lineDefined = data.LineDefined or data[5] or 0
+			local lastLineDefined = data.LastLineDefined or data[6] or 0
+
+			if file and file ~= "" then
+				file = string.match(file, "@?(.+)")
+				if not file then file = data.Source or data[4] end
+
+				SourceHeader:SetText(string.format("%s (%d - %d)", file, lineDefined, lastLineDefined))
+
+				GProfiler.RequestFunctionSource(file, lineDefined, lastLineDefined, function(src)
+					if src then
+						GProfiler.SyntaxHighlight(RichText, table.concat(src, ""), lineDefined)
+					else
+						RichText:SetText("Failed to load source")
+					end
+				end)
+			else
+				RichText:SetText("Failed to load source (2)")
+			end
+		end
+	end
+
+	local function PopulateResults()
+		if not IsValid(ResultsList) or not IsValid(ReceivedList) then return end
+
+		local displayRealm = Net.Realm == "Both" and "Client" or Net.Realm
+		local realmData = NetStore:GetData(displayRealm) or {}
+
+		ResultsList:Clear()
+		if realmData.Out then
+			for name, data in pairs(realmData.Out) do
+				ResultsList:AddLine(
+					name,
+					data.Count or data[1] or 0,
+					FormatBits(data.MaxSize or data[2] or 0),
+					FormatBits(data.TotalSize or data[3] or 0),
+					data.TotalTime or data[7] or 0,
+					data.AverageTime or data[9] or 0,
+					data.LongestTime or data[8] or 0
+				)
+			end
+		end
+
+		ReceivedList:Clear()
+		if realmData.Inc then
+			for name, data in pairs(realmData.Inc) do
+				ReceivedList:AddLine(
+					name,
+					data.Count or data[1] or 0,
+					FormatBits(data.MaxSize or data[2] or 0),
+					FormatBits(data.TotalSize or data[3] or 0),
+					data.TotalTime or data[7] or 0,
+					data.AverageTime or data[9] or 0,
+					data.LongestTime or data[8] or 0
+				)
+			end
+		end
+	end
+	GProfiler.Net.RefreshUI = PopulateResults
+	PopulateResults()
+
+	local function CreateReceiverList(Parent, Receivers, Title)
+		Parent:Clear()
+
+		local HeaderPanel = vgui.Create("DPanel", Parent)
+		HeaderPanel:SetSize(Parent:GetWide(), GProfiler.GetScaledSize(50))
+		HeaderPanel.Paint = function(s, w, h)
+			GProfiler.RNDX.DrawScaled(8, 0, 0, w, h, Color(34, 77, 122), GProfiler.RNDX.NO_BL + GProfiler.RNDX.NO_BR)
+			draw.SimpleText(Title, "GProfiler.Inter28", GProfiler.GetScaledSize(10), h / 2, GProfiler.SyntaxColors.text, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+		end
+
+		local RefreshButton = vgui.Create("DButton", HeaderPanel)
+		RefreshButton:SetSize(GProfiler.GetScaledSize(80), GProfiler.GetScaledSize(30))
+		RefreshButton:SetPos(HeaderPanel:GetWide() - RefreshButton:GetWide() - GProfiler.GetScaledSize(10), (HeaderPanel:GetTall() - RefreshButton:GetTall()) / 2)
+		RefreshButton:SetText("Refresh")
+		RefreshButton:SetFont("GProfiler.Inter24")
+		RefreshButton:SetTextColor(Color(0,0,0,0))
+		RefreshButton.Paint = function(s, w, h)
+			GProfiler.RNDX.DrawScaled(4, 0, 0, w, h, Color(255, 255, 255, 20))
+			if s:IsHovered() then
+				GProfiler.RNDX.DrawScaled(4, 0, 0, w, h, Color(255, 255, 255, 20))
+			end
+			draw.SimpleText("Refresh", "GProfiler.Inter24", w / 2, h / 2, GProfiler.SyntaxColors.text, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+		end
+		RefreshButton.DoClick = function()
+			net.Start("GProfiler_Net_ReceiverTbl")
+			net.SendToServer()
+		end
+
+		local List = vgui.Create("DPanelList", Parent)
+		List:SetSize(Parent:GetWide(), Parent:GetTall() - HeaderPanel:GetTall())
+		List:SetPos(0, HeaderPanel:GetTall())
+		List:EnableVerticalScrollbar()
+
+		local ScrollBar = List.VBar
+		ScrollBar:SetWide(GProfiler.GetScaledSize(12))
+		ScrollBar:SetHideButtons(true)
+		ScrollBar.Paint = function(s, w, h)
+			GProfiler.RNDX.DrawScaled(0, 0, 0, w, h, Color(255, 255, 255, 10))
+		end
+		ScrollBar.btnGrip.Paint = function(s, w, h)
+			GProfiler.RNDX.DrawScaled(0, 0, 0, w, h, Color(255, 255, 255, 20))
+		end
+
+		for k, Receiver in ipairs(Receivers) do
+			local i = k
+			local Item = vgui.Create("DButton", List)
+			Item:SetSize(List:GetWide(), GProfiler.GetScaledSize(30))
+			Item:SetText(Receiver.Name)
+			Item:SetFont("GProfiler.Inter24")
+			Item:SizeToContentsY()
+			Item:SetTall(Item:GetTall() + GProfiler.GetScaledSize(10))
+			Item:SetContentAlignment(1)
+			Item:SetTextColor(Color(0,0,0,0))
+			Item.Paint = function(s, w, h)
+				if i % 2 == 0 then
+					GProfiler.RNDX.DrawScaled(0, 0, 0, w, h, Color(255, 255, 255, 10))
+				else
+					GProfiler.RNDX.DrawScaled(0, 0, 0, w, h, Color(255, 255, 255, 2))
+				end
+
+				if s:IsHovered() then
+					GProfiler.RNDX.DrawScaled(0, 0, 0, w, h, Color(255, 255, 255, 20))
+				end
+
+				draw.SimpleText(Receiver.Name, "GProfiler.Inter24", GProfiler.GetScaledSize(10), h / 2, GProfiler.SyntaxColors.text, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+			end
+
+			List:AddItem(Item)
+		end
+
+		Parent.OnHandleMoved = function()
+			HeaderPanel:SetSize(Parent:GetWide(), HeaderPanel:GetTall())
+			RefreshButton:SetPos(HeaderPanel:GetWide() - RefreshButton:GetWide() - GProfiler.GetScaledSize(10), (HeaderPanel:GetTall() - RefreshButton:GetTall()) / 2)
+			List:SetSize(Parent:GetWide(), Parent:GetTall() - HeaderPanel:GetTall())
+			List:SetPos(0, HeaderPanel:GetTall())
+			for k, v in pairs(List:GetItems()) do
+				v:SetSize(List:GetWide(), v:GetTall())
+			end
+		end
+	end
+
+	local CLReceivers = {}
+	local SVReceivers = {}
+
+	for name, func in pairs(net.Receivers) do
+		local Source = debug.getinfo(func, "S") or {}
+		local ReceiverInfo = {
+			["Name"] = name,
+			["Source"] = Source.short_src or "",
+			["LineDefined"] = Source.linedefined or 0,
+			["LastLineDefined"] = Source.lastlinedefined or 0
+		}
+		table.insert(CLReceivers, ReceiverInfo)
+	end
+
+	local clr = CreateReceiverList(ClientReceivers, CLReceivers, string.format("Client Receivers (%d)", #CLReceivers))
+
+	net.Receive("GProfiler_Net_ReceiverTbl", function(len, ply)
+		if not GProfiler.Access.HasAccess(ply) then return end
+
+		SVReceivers = {}
+		local Count = net.ReadUInt(32)
+		for i = 1, Count do
+			local name = net.ReadString()
+			local source = net.ReadString()
+			local lineDefined = net.ReadUInt(16)
+			local lastLineDefined = net.ReadUInt(16)
+
+			local ReceiverInfo = {
+				["Name"] = name,
+				["Source"] = source,
+				["LineDefined"] = lineDefined,
+				["LastLineDefined"] = lastLineDefined
+			}
+			table.insert(SVReceivers, ReceiverInfo)
+		end
+
+		local svr = CreateReceiverList(ServerReceivers, SVReceivers, string.format("Server Receivers (%d)", #SVReceivers))
+	end)
+
+	net.Start("GProfiler_Net_ReceiverTbl")
+	net.SendToServer()
+end
+GProfiler.Menu.RegisterTab("Networking", "gprofiler/network.png", 2, GProfiler.Net.DoTab, function()
+	local timer = NetStore:GetTimerData(Net.Realm)
+	if timer.StartTime == 0 then return end
+	return GProfiler.TimeRunning(timer.StartTime, timer.EndTime, timer.ProfileActive), timer.ProfileActive
+end)
+
+net.Receive("GProfiler_Net_SendData", function()
+	local isIncoming = net.ReadBool()
+	local count = net.ReadUInt(32)
+
+	local serverData = NetStore:GetData("Server") or {}
+	if not serverData.Inc then serverData.Inc = {} end
+	if not serverData.Out then serverData.Out = {} end
+
+	local target = isIncoming and serverData.Inc or serverData.Out
+	table.Empty(target)
+
+	for i=1, count do
+		local name = net.ReadString()
+		local data = {}
+		data.Count = net.ReadUInt(32)
+		data.MaxSize = net.ReadUInt(32)
+		data.TotalSize = net.ReadDouble()
+		data.Source = net.ReadString()
+		data.LineDefined = net.ReadUInt(16)
+		data.LastLineDefined = net.ReadUInt(16)
+		data.TotalTime = net.ReadFloat()
+		data.LongestTime = net.ReadFloat()
+		data.AverageTime = net.ReadFloat()
+		target[name] = data
+	end
+
+	NetStore:SetData("Server", serverData)
+
+	if GProfiler.Net.RefreshUI then
+		GProfiler.Net.RefreshUI()
+	end
+end)
+
+net.Receive("GProfiler_Net_SendBreakdown", function()
+	local name = net.ReadString()
+	local found = net.ReadBool()
+	if not found then return end
+
+	local totalSize = net.ReadUInt(32)
+
+	local function ReadNode()
+		local node = {}
+		node.Func = net.ReadString()
+		node.Size = net.ReadUInt(32)
+		local childCount = net.ReadUInt(16)
+		node.Children = {}
+		for i=1, childCount do
+			node.Children[i] = ReadNode()
+		end
+		return node
+	end
+
+	local rootChildren = {}
+	local count = net.ReadUInt(16)
+	for i=1, count do
+		table.insert(rootChildren, ReadNode())
+	end
+
+	GProfiler.Net.Breakdowns = GProfiler.Net.Breakdowns or {}
+	GProfiler.Net.Breakdowns[name] = {
+		Nodes = rootChildren,
+		Size = totalSize
+	}
+
+	if GProfiler.Net.UpdateBreakdownUI then
+		GProfiler.Net.UpdateBreakdownUI(name)
+	end
+end)

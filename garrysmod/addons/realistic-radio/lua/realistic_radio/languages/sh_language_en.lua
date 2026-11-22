@@ -1,0 +1,53 @@
+/*
+    Addon id: 2bab5356-b4ae-4c4d-acb8-e199f204bd54
+    Version: v1.3.8 (stable)
+*/
+
+Realistic_Radio = Realistic_Radio or {}
+Realistic_Radio.Language = Realistic_Radio.Language or {}
+
+Realistic_Radio.Language["en"] = {
+    ["createfreq"] = "Create Frequency", 
+    ["joinfreq"] = "Join Frequency", 
+    ["insertpassword"] = "Insert the Password", 
+    ["nothingfreq"] = "None Secure frequency", 
+    ["freq"] = "Frequency", 
+    ["mute"] = "Mute the Micro", 
+    ["nosound"] = "Mute the Sound", 
+    ["unmute"] = "Unmute the Micro",
+    ["offnosound"] = "Unmute the Sound",
+    ["yourfreq"] = "Your Freq", 
+    ["radiooff"] = "RADIO OFF", 
+    ["rightclick"] = "RIGHT-CLICK",
+    ["turnon"] = "Turn on the radio",
+    ["beforetutorial"] = "BEFORE TUTORIAL",
+    ["nexttutorial"] = "NEXT TUTORIAL",
+    ["tutorialtitle"] = "RADIO TUTORIAL",
+    ["tuto1"] = "This is the main menu of the radio here you can modify the frequency",
+    ["tuto2"] = "You can use the numbers of your keyboard for choose the frequency of the radio",
+    ["tuto3"] = "You can use your arrows of your keyboard for move into the buttons",
+    ["tuto4"] = "You can use the wheel up / down for modify the frequency of the radio",
+    ["tuto5"] = "You can use the enter key for confirm the application sélection",
+    ["tuto6"] = "This menu permit you to create a secure frequency with a password for talk in security",
+    ["tuto7"] = "You can use the key enter for confirm the creation of the secure frequency",
+    ["tuto8"] = "You can use the key enter in the frequency for join it",
+    ["tuto9"] = "This menu permit you to select the secure frequency that you want to join",
+    ["tuto10"] = "This menu permit you to enter the password for join the secure frequency",
+    ["tuto11"] = "You can use the numbers of your keyboard to write the password of the frequency",
+    ["help"] = "You have a radio if you don't know how use it you can do the command /rdo",
+    ["alreadysecure"] = "This frequency is already secure",
+    ["cantcreatesecure1"] = "You can't create a secure frequency with this job",
+    ["cantjoinfreq"] = "You can't join a secure frequency with this job",
+    ["offStopSound"] = "You Unmuted the sound of the radio",
+    ["unmutenotify"] = "You Unmuted the Microphone of the radio",
+    ["mutesoundnotify"] = "You muted the sound of the radio",
+    ["mutenotify"] = "You muted the microphone of the radio",
+    ["joinedfrequency"] = "You have joined the frequency",
+    ["passwordfailed"] = "This is not the correct password of the secure frequency",
+    ["passwordproblem"] = "The password need to have 4 numbers",
+    ["frequencyno0"] = "The frequency can't be equal to zero",
+    ["cancreatesecurefreq"] = "There is a player or several players on the frequency, you can't secure it",
+    ["toomuchsecure"] = "There are too much secure frequency, wait than a secure frequency was delete before create an other one",
+    ["joinedyour"] = "joined your secure frequency !",
+    ["cantjoinyoursecure"] = "You can't join your secure frequency",
+}

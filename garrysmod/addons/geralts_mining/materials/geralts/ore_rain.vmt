@@ -1,0 +1,27 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/epangelmatikes/custom_drill/ore_rain"
+	"$bumpmap" "models/epangelmatikes/custom_drill/ore_rain_n"
+ 	"$translucent" 1
+	"$alpha" 0.2
+	$color2 "{ 255 255 255}"
+
+	"$phong" "1"
+	"$phongexponent" "5"
+	"$phongboost" "4"
+	"$phongfresnelranges" "[1 0.5 1]"
+
+	$rimlight               1
+	$rimlightexponent       2
+	$rimlightboost          2
+
+	"Proxies"
+	{
+		"TextureScroll"
+			{
+			"Texturescrollvar" "$Basetexturetransform"
+			"Texturescrollrate" 0.02
+			"texturescrollangle" -90
+			}
+	}
+}

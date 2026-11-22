@@ -1,0 +1,139 @@
+SCP-RP RANDOM EVENTS
+Build: 2.5.2-610-biomass-model
+
+Start an event with:
+scprp_event_start <event_id>
+
+
+1. CONTAINMENT CALIBRATION
+
+Command:
+scprp_event_start containment_calibration
+
+Calibration stations appear around the site. Research holds E to calibrate each
+station, then Security presses E to authorize it. Completing every station grants
+Foundation personnel additional armor.
+
+
+2. SCP-999 MORALE TOUR
+
+Command:
+scprp_event_start scp999_morale_tour
+
+SCP-999 begins a supervised facility tour. Nearby non-SCP personnel periodically
+receive health, armor, and a small movement-speed boost.
+
+
+3. COGNITOHAZARD INTERVIEW
+
+Command:
+scprp_event_start cognitohazard_interview
+
+A player becomes exposed to a cognitohazard and receives strange messages and
+sounds. Exposure can spread to nearby personnel. Research must locate exposed
+players and press E on them to complete stabilization interviews.
+
+
+4. SCP OBJECT TESTING REQUEST
+
+Command:
+scprp_event_start object_testing_request
+
+An anomalous object appears near active personnel. Research must bring a test
+subject close and hold E on the object. Each test produces a random effect,
+including healing, damage, hallucinations, movement changes, armor, or physical
+disturbances.
+
+
+5. TEMPORAL RESEARCH INCIDENT
+
+Command:
+scprp_event_start temporal_research_incident
+
+A temporal rift and several anchor devices appear. Research must hold E on every
+anchor. Personnel near the rift may be slowed, accelerated, launched, hear strange
+sounds, or receive messages from another time.
+
+
+6. D-CLASS MEDICAL SCREENING
+
+Command:
+scprp_event_start dclass_medical_screening
+
+Selected D-Class are marked for emergency screening. Medical or Research personnel
+press E on each subject. One subject may be an anomalous carrier who causes
+coughing, slowdown, and mental static until stabilized. Cooperative D-Class receive
+a small reward.
+
+
+7. REDACTED OBJECT MANIFEST
+
+Command:
+scprp_event_start redacted_object_manifest
+
+Several unidentified anomalous objects appear around the site. Research must locate
+and classify them by holding E. Objects can be harmless, unstable, biological,
+energetic, cognitohazardous, or spatially distorted.
+
+
+8. REALITY SINKHOLE
+
+Command:
+scprp_event_start reality_sinkhole
+
+A reality-warping zone forms inside the facility with anchors around it. Research
+must stabilize every anchor. Players near the sinkhole may be pushed away, slowed,
+launched, or receive strange reality-distortion messages.
+
+
+9. POWER GRID SURGE
+
+Command:
+scprp_event_start power_grid_surge
+
+Site 70's actual facility lights flicker and shut down. Emergency power terminals
+appear around the map and must be stabilized. Completing every terminal restores
+power. Stopping or timing out the event also automatically restores the lights.
+
+
+10. SCP-008 OUTBREAK
+
+Command:
+scprp_event_start scp008_outbreak
+
+SCP-008 canisters rupture around the site and infected NPCs appear. Nearby personnel
+build exposure and become infectious at 60 percent. At 100 percent, they transform
+into an SCP-008-2 instance with a zombie model and SWEP.
+
+Medical or Research personnel can administer suppressants, while responders
+neutralize the leaking canisters.
+
+
+11. SCP-610 BIOMASS BLOOM
+
+Command:
+scprp_event_start scp610_biomass_bloom
+
+Destructible SCP-610 flesh growths appear and periodically produce hostile infected
+NPCs. Standing near biomass builds exposure. At 100 percent, the player transforms
+into an SCP-610 instance.
+
+Armed personnel must shoot and destroy all biomass growths before time expires.
+
+
+OTHER ADMIN COMMANDS
+
+scprp_event_list
+Displays all registered event IDs.
+
+scprp_event_debug
+Displays the loaded addon build and event status.
+
+scprp_event_roles
+Displays living role counts detected by the addon.
+
+scprp_event_stop
+Stops the active event.
+
+scprp_event_next
+Triggers the warning for the next random event.
