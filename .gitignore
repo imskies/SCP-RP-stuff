@@ -11,3 +11,8 @@ garrysmod/data/
 garrysmod/clientside_errors.txt
 garrysmod/settings/users.txt
 *.log
+
+# Git metadata from nested addon repositories
+**/.git
+**/.git/**
+
